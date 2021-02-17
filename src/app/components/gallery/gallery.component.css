@@ -1,0 +1,17 @@
+.align-items-center{
+    padding: 1em 4em;
+}
+
+.place-inline{
+    display: inline;
+}
+
+.sort-by-date{
+    margin:0 4em;
+    margin-bottom: 2em;
+}
+
+.add-image-btn{
+    margin: 0 4em;
+    height: 2em;
+}

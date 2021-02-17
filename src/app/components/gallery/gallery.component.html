@@ -1,0 +1,27 @@
+<div class="align-items-center">
+    <div class="place-inline">
+        <mat-form-field appearance="fill">
+            <mat-label>Search images</mat-label>
+            <mat-icon matPrefix>search</mat-icon>
+            <input matInput #input placeholder="Ex. Cat dancing">
+        </mat-form-field>
+    </div>
+    <div class="place-inline sort-by-date">
+        <mat-button-toggle-group #group="matButtonToggleGroup">
+            <mat-button-toggle value="descending" aria-label="sort ascending">
+              <mat-label>Date</mat-label>
+              <mat-icon>arrow_upward</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle value="ascending" aria-label="sort descending">
+                <mat-icon>arrow_downward</mat-icon>
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+    <div class="place-inline add-image-btn">
+        <button mat-stroked-button color="white"><mat-icon>add</mat-icon></button>
+    </div>
+    <mat-toolbar>        
+        <span>Images:</span>
+    </mat-toolbar>
+    <app-image-thumbnail></app-image-thumbnail>
+</div>
