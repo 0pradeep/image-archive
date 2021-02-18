@@ -1,27 +1,30 @@
 <div class="align-items-center">
+    <!-- Search bar -->
     <div class="place-inline">
         <mat-form-field appearance="fill">
             <mat-label>Search images</mat-label>
-            <mat-icon matPrefix>search</mat-icon>
+            <mat-icon matSuffix>search</mat-icon>
             <input matInput #input placeholder="Ex. Cat dancing">
         </mat-form-field>
     </div>
-    <div class="place-inline sort-by-date">
-        <mat-button-toggle-group #group="matButtonToggleGroup">
-            <mat-button-toggle value="descending" aria-label="sort ascending">
-              <mat-label>Date</mat-label>
-              <mat-icon>arrow_upward</mat-icon>
-            </mat-button-toggle>
-            <mat-button-toggle value="ascending" aria-label="sort descending">
-                <mat-icon>arrow_downward</mat-icon>
-            </mat-button-toggle>
-        </mat-button-toggle-group>
+    <!-- Sort drop down -->
+    <div>
+        <mat-form-field appearance="fill" class="align-icons-text">
+            <mat-select>
+                <mat-option style="padding: 0px 5px;" value="dateAsc">Date <mat-icon class="align-icon-right">arrow_downward</mat-icon></mat-option>
+                <mat-option style="padding: 0px 5px;" value="dateDesc">Date <mat-icon class="align-icon-right">arrow_upward</mat-icon></mat-option>
+                <mat-option style="padding: 0px 5px;" value="NameAsc">Name<mat-icon class="align-icon-right">arrow_downward</mat-icon></mat-option>
+                <mat-option style="padding: 0px 5px;" value="NameDesc">Name<mat-icon class="align-icon-right">arrow_upward</mat-icon></mat-option>
+            </mat-select>
+          </mat-form-field>
     </div>
+    <!-- Add image button -->
     <div class="place-inline add-image-btn">
-        <button mat-stroked-button color="white"><mat-icon>add</mat-icon></button>
+        <button mat-stroked-button color="white" (click)="addImage()"><mat-icon>add</mat-icon></button>
     </div>
+    <!-- Image gallery -->
     <mat-toolbar>        
         <span>Images:</span>
     </mat-toolbar>
-    <app-image-thumbnail></app-image-thumbnail>
+    <app-image-thumbnail class="flex-center" *ngFor="let imageThumbnail of imageThumbnails" [imageThumbnail]="imageThumbnail"></app-image-thumbnail>
 </div>

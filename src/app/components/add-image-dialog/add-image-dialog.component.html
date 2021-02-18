@@ -1,0 +1,19 @@
+<div>
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="data.name">
+    </mat-form-field>
+</div>
+<div>
+    <mat-form-field>
+        <mat-label>Url</mat-label>
+        <input matInput [(ngModel)]="data.imageUrl">
+    </mat-form-field>
+</div>
+<div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="addImage()">Ok</button>
+        <button mat-button (click)="closeDialog()">Cancel</button>
+        <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button> -->
+    </div>
+</div>

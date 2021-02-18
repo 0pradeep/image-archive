@@ -6,3 +6,8 @@
 .image-display{
     padding: 20px 20px 20px 20px;
 }
+
+.align-image-name{
+    display: flex;
+    justify-content: center;
+}
