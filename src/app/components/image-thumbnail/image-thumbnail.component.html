@@ -1,11 +1,11 @@
-<div class="img-card" *ngIf="iImageUrlValid">
-    <mat-card>
+<div *ngIf="iImageUrlValid">
+    <mat-card style="margin-bottom: 10px;">
         <mat-card-header class="align-image-name">
             <mat-card-title>{{ imageThumbnail.name }}</mat-card-title>
         </mat-card-header>
         <!-- <mat-card-content> -->
         <div class="image-display">
-            <img mat-card-image src="{{ imageThumbnail.imageUrl }}" (error)="invalidUrl()">
+            <img class="img-card" mat-card-image src="{{ imageThumbnail.imageUrl }}" (error)="invalidUrl()">
         </div>
         <!-- </mat-card-content> -->
     </mat-card>

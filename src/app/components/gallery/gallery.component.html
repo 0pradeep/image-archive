@@ -1,30 +1,35 @@
 <div class="align-items-center">
     <!-- Search bar -->
-    <div class="place-inline">
-        <mat-form-field appearance="fill">
-            <mat-label>Search images</mat-label>
-            <mat-icon matSuffix>search</mat-icon>
-            <input matInput #input placeholder="Ex. Cat dancing">
-        </mat-form-field>
-    </div>
+    <mat-form-field appearance="outline" style="margin-right: 20px;">
+        <mat-label>Search images</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput #input [(ngModel)]="searchText" placeholder="Ex. Cat dancing">
+    </mat-form-field>
     <!-- Sort drop down -->
-    <div>
-        <mat-form-field appearance="fill" class="align-icons-text">
-            <mat-select>
-                <mat-option style="padding: 0px 5px;" value="dateAsc">Date <mat-icon class="align-icon-right">arrow_downward</mat-icon></mat-option>
-                <mat-option style="padding: 0px 5px;" value="dateDesc">Date <mat-icon class="align-icon-right">arrow_upward</mat-icon></mat-option>
-                <mat-option style="padding: 0px 5px;" value="NameAsc">Name<mat-icon class="align-icon-right">arrow_downward</mat-icon></mat-option>
-                <mat-option style="padding: 0px 5px;" value="NameDesc">Name<mat-icon class="align-icon-right">arrow_upward</mat-icon></mat-option>
-            </mat-select>
-          </mat-form-field>
-    </div>
+    <mat-form-field appearance="outline" style="margin-right: 20px;">
+        <!-- drop down icon -->
+        <span matSuffix><mat-icon>arrow_drop_down</mat-icon></span>
+        <!-- drop down data -->
+        <mat-select #sort [value]="sortFields[0].field">
+            <mat-select-trigger>
+                <mat-label>Date</mat-label><mat-icon *ngIf="sort.value">arrow_downward</mat-icon>
+            </mat-select-trigger>
+            <mat-option *ngFor="let sortField of sortFields; let i = index" [value]="sortFields[i].field">
+                {{ sortField.field }}
+                <mat-icon class="align-icon-right">{{ sortField.icon }}</mat-icon>
+            </mat-option>
+        </mat-select>
+        <!-- <span *ngIf="sort.value" matSuffix><mat-icon>{{ sort }}</mat-icon></span> -->
+    </mat-form-field>
+
     <!-- Add image button -->
-    <div class="place-inline add-image-btn">
-        <button mat-stroked-button color="white" (click)="addImage()"><mat-icon>add</mat-icon></button>
-    </div>
+    <button mat-stroked-button color="white" (click)="addImage()">
+        <mat-icon>add</mat-icon>
+    </button>
     <!-- Image gallery -->
-    <mat-toolbar>        
+    <mat-toolbar>
         <span>Images:</span>
     </mat-toolbar>
-    <app-image-thumbnail class="flex-center" *ngFor="let imageThumbnail of imageThumbnails" [imageThumbnail]="imageThumbnail"></app-image-thumbnail>
+    <app-image-thumbnail class="flex-center" *ngFor="let imageThumbnail of imageThumbnails | searchFilter: searchText"
+        [imageThumbnail]="imageThumbnail"></app-image-thumbnail>
 </div>

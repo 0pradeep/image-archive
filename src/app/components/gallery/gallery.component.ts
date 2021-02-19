@@ -11,6 +11,14 @@ import { AddImageDialogComponent } from '../add-image-dialog/add-image-dialog.co
 export class GalleryComponent implements OnInit {
   imageThumbnails:ImageThumbnail[];
   imgThumbnail:ImageThumbnail;
+  searchText:string='';
+  position:string = "before";
+  sortFields = [
+    { field:'Date', value:'dateAsc', icon:'arrow_downward' },
+    { field:'Date', value:'dateDesc', icon:'arrow_upward' },
+    { field:'Name', value:'nameAsc', icon:'arrow_downward' },
+    { field:'Name', value:'nameDesc', icon:'arrow_upward' }
+  ];
 
   constructor(public dialog: MatDialog) { }
 
@@ -46,5 +54,9 @@ export class GalleryComponent implements OnInit {
         imageUrl: result.data.imageUrl
       });
     })
+  }
+
+  changePosition(position:string):void{
+    this.position = position;
   }
 }

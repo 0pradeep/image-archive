@@ -16,6 +16,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
+import { FilterPipe } from './pipes/filter.pipe';
 import { AddImageDialogComponent } from './components/add-image-dialog/add-image-dialog.component';
 
 @NgModule({
@@ -23,7 +25,8 @@ import { AddImageDialogComponent } from './components/add-image-dialog/add-image
     AppComponent,
     GalleryComponent,
     ImageThumbnailComponent,
-    AddImageDialogComponent
+    AddImageDialogComponent,
+    FilterPipe
   ],
   entryComponents:[
     AddImageDialogComponent
@@ -41,7 +44,8 @@ import { AddImageDialogComponent } from './components/add-image-dialog/add-image
     MatButtonToggleModule,
     MatDialogModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

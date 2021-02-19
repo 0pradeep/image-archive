@@ -2,10 +2,6 @@
     padding: 1em 4em;
 }
 
-.place-inline{
-    display: inline;
-}
-
 .sort-by-date{
     margin:0 4em;
     margin-bottom: 2em;
@@ -19,16 +15,15 @@
 .flex-center{
     display: flex;
     justify-content: center;
-    padding: 1em 0;
+    padding: 0;
 }
 
 .align-icon-right{
     margin-right: 0px;
     padding-right: 0px;
-    margin-left: 6em;
+    /* margin-left: 1em; */
 }
 
-.align-icons-text{
-    display:flex;
-    
+::ng-deep .mat-select-arrow {
+    opacity: 0;
 }
