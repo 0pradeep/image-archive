@@ -9,54 +9,77 @@ import { AddImageDialogComponent } from '../add-image-dialog/add-image-dialog.co
   styleUrls: ['./gallery.component.css']
 })
 export class GalleryComponent implements OnInit {
-  imageThumbnails:ImageThumbnail[];
-  imgThumbnail:ImageThumbnail;
-  searchText:string='';
-  position:string = "before";
+  imageThumbnails: ImageThumbnail[];
+  imgThumbnail: ImageThumbnail;
+  searchText: string = '';
+  position: string = "before";
+  sortBy: string = "Date";
+  sortIcon: string = "arrow_down";
   sortFields = [
-    { field:'Date', value:'dateAsc', icon:'arrow_downward' },
-    { field:'Date', value:'dateDesc', icon:'arrow_upward' },
-    { field:'Name', value:'nameAsc', icon:'arrow_downward' },
-    { field:'Name', value:'nameDesc', icon:'arrow_upward' }
+    { field: 'Date', value: 'dateAsc', icon: 'arrow_downward' },
+    { field: 'Date', value: 'dateDesc', icon: 'arrow_upward' },
+    { field: 'Name', value: 'nameAsc', icon: 'arrow_downward' },
+    { field: 'Name', value: 'nameDesc', icon: 'arrow_upward' }
   ];
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.imageThumbnails=[
-      {
-        id: 1,
-        name: "Dog breed Shibu Inu",
-        imageUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg"
-      },
-      {
-        id: 2,
-        name: "Cat playing",
-        imageUrl: "https://cdn.pixabay.com/photo/2017/07/25/01/22/cat-2536662_960_720.jpg"
-      }
-    ];
+    if (localStorage.hasOwnProperty('imgArchive')) {
+      this.imageThumbnails = JSON.parse(localStorage.getItem('imgArchive') || "[]");
+    } else {
+      this.imageThumbnails = [
+        {
+          id: 1,
+          name: "Dog breed Shibu Inu",
+          imageUrl: "https://material.angular.io/assets/img/examples/shiba2.jpg",
+          date: "1613743281117"
+        },
+        {
+          id: 2,
+          name: "Cat playing",
+          imageUrl: "https://cdn.pixabay.com/photo/2017/07/25/01/22/cat-2536662_960_720.jpg",
+          date: "1613743283277"
+        }
+      ];
+    }
   }
 
-  addImage():void {
+  addImage(): void {
     const dialogRef = this.dialog.open(AddImageDialogComponent, {
       width: '250px',
-      data: {imgThumbnail: this.imgThumbnail}
+      data: { imgThumbnail: this.imgThumbnail }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(this.imageThumbnails);
       this.imgThumbnail = result;
       console.log(result);
-      
+
       this.imageThumbnails.push({
-        id : this.imageThumbnails.length + 1,
+        id: this.imageThumbnails.length + 1,
         name: result.data.name,
-        imageUrl: result.data.imageUrl
+        imageUrl: result.data.imageUrl,
+        date: Date.now().toString()
       });
+      localStorage.setItem('imgArchive', JSON.stringify(this.imageThumbnails));
     })
+    
   }
 
-  changePosition(position:string):void{
+  sortImages(value):void{
+    if(value == "nameAsc" || value == "nameDesc"){
+      this.imageThumbnails.sort((a,b) => a.name.localeCompare(b.name));
+      if(value == "nameDesc") this.imageThumbnails.reverse();
+    } else{
+      console.log(this.imageThumbnails);
+      
+      this.imageThumbnails.sort((a,b) => a.date.localeCompare(b.date));
+      if(value == "dateDesc") this.imageThumbnails.reverse();
+    }
+  }
+
+  changePosition(position: string): void {
     this.position = position;
   }
 }

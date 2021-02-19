@@ -10,11 +10,11 @@
         <!-- drop down icon -->
         <span matSuffix><mat-icon>arrow_drop_down</mat-icon></span>
         <!-- drop down data -->
-        <mat-select #sort [value]="sortFields[0].field">
-            <mat-select-trigger>
-                <mat-label>Date</mat-label><mat-icon *ngIf="sort.value">arrow_downward</mat-icon>
-            </mat-select-trigger>
-            <mat-option *ngFor="let sortField of sortFields; let i = index" [value]="sortFields[i].field">
+        <mat-select value="dateAsc" #sort (selectionChange)="sortImages(sort.value)">
+            <!-- <mat-select-trigger>
+                <mat-label>{{ sortBy }}</mat-label><mat-icon *ngIf="sort.value">{{ sortIcon }}</mat-icon>
+            </mat-select-trigger> -->
+            <mat-option *ngFor="let sortField of sortFields; let i = index" [value]="sortField.value">
                 {{ sortField.field }}
                 <mat-icon class="align-icon-right">{{ sortField.icon }}</mat-icon>
             </mat-option>
@@ -23,7 +23,7 @@
     </mat-form-field>
 
     <!-- Add image button -->
-    <button mat-stroked-button color="white" (click)="addImage()">
+    <button style="height:60px; padding-top: 8px" mat-stroked-button color="white" (click)="addImage()">
         <mat-icon>add</mat-icon>
     </button>
     <!-- Image gallery -->
