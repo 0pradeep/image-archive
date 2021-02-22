@@ -19,6 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import { FilterPipe } from './pipes/filter.pipe';
 import { AddImageDialogComponent } from './components/add-image-dialog/add-image-dialog.component';
+import { VotingContestComponent } from './components/voting-contest/voting-contest.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AddImageDialogComponent } from './components/add-image-dialog/add-image
     GalleryComponent,
     ImageThumbnailComponent,
     AddImageDialogComponent,
-    FilterPipe
+    FilterPipe,
+    VotingContestComponent
   ],
   entryComponents:[
     AddImageDialogComponent

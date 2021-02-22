@@ -1,0 +1,10 @@
+<div>
+    <br><br><br><br><br>
+    <mat-label>Votings</mat-label>
+    <input #matInput (input)="getWinner(matInput.value)">
+    <br><br>
+    <mat-label>
+        Winner:
+        <mat-label>{{ maxVote }}</mat-label>
+    </mat-label>
+</div>
