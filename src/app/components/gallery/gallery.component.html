@@ -6,14 +6,15 @@
         <input matInput #input [(ngModel)]="searchText" placeholder="Ex. Cat dancing">
     </mat-form-field>
     <!-- Sort drop down -->
-    <mat-form-field appearance="outline" style="margin-right: 20px;">
+    <mat-form-field appearance="outline" style="margin-right: 20px; height: 40px;">
         <!-- drop down icon -->
         <span matSuffix><mat-icon>arrow_drop_down</mat-icon></span>
         <!-- drop down data -->
         <mat-select value="dateAsc" #sort (selectionChange)="sortImages(sort.value)">
-            <!-- <mat-select-trigger>
-                <mat-label>{{ sortBy }}</mat-label><mat-icon *ngIf="sort.value">{{ sortIcon }}</mat-icon>
-            </mat-select-trigger> -->
+            <mat-select-trigger>
+                <mat-label>{{ sortBy }}</mat-label>
+                <mat-icon style="float: right; padding-bottom: 5px;" *ngIf="sort.value">{{ sortIcon }}</mat-icon>
+            </mat-select-trigger>
             <mat-option *ngFor="let sortField of sortFields; let i = index" [value]="sortField.value">
                 {{ sortField.field }}
                 <mat-icon class="align-icon-right">{{ sortField.icon }}</mat-icon>
@@ -21,9 +22,8 @@
         </mat-select>
         <!-- <span *ngIf="sort.value" matSuffix><mat-icon>{{ sort }}</mat-icon></span> -->
     </mat-form-field>
-
     <!-- Add image button -->
-    <button style="height:60px; padding-top: 8px" mat-stroked-button color="white" (click)="addImage()">
+    <button style="height:60px; padding: 8px 0px" mat-stroked-button color="white" (click)="addImage()">
         <mat-icon>add</mat-icon>
     </button>
     <!-- Image gallery -->

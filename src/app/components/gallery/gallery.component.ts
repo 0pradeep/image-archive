@@ -14,7 +14,7 @@ export class GalleryComponent implements OnInit {
   searchText: string = '';
   position: string = "before";
   sortBy: string = "Date";
-  sortIcon: string = "arrow_down";
+  sortIcon: string = "arrow_downward";
   sortFields = [
     { field: 'Date', value: 'dateAsc', icon: 'arrow_downward' },
     { field: 'Date', value: 'dateDesc', icon: 'arrow_upward' },
@@ -64,19 +64,30 @@ export class GalleryComponent implements OnInit {
       });
       localStorage.setItem('imgArchive', JSON.stringify(this.imageThumbnails));
     })
-    
+
   }
 
-  sortImages(value):void{
-    if(value == "nameAsc" || value == "nameDesc"){
-      this.imageThumbnails.sort((a,b) => a.name.localeCompare(b.name));
-      if(value == "nameDesc") this.imageThumbnails.reverse();
-    } else{
-      console.log(this.imageThumbnails);
-      
-      this.imageThumbnails.sort((a,b) => a.date.localeCompare(b.date));
-      if(value == "dateDesc") this.imageThumbnails.reverse();
+  sortImages(value): void {
+    let iSortInAsc: boolean = true;
+    if (value == "nameAsc" || value == "nameDesc") {
+      this.sortBy = "Name";
+      this.imageThumbnails.sort((a, b) => a.name.localeCompare(b.name));
+      if (value == "nameDesc") {
+        this.imageThumbnails.reverse();
+        iSortInAsc = false;
+      }
+    } else {
+      this.sortBy = "Date";
+      this.imageThumbnails.sort((a, b) => a.date.localeCompare(b.date));
+      if (value == "dateDesc") {
+        this.imageThumbnails.reverse();
+        iSortInAsc = false;
+      }
     }
+    if (iSortInAsc)
+      this.sortIcon = "arrow_downward";
+    else
+      this.sortIcon = "arrow_upward";
   }
 
   changePosition(position: string): void {
